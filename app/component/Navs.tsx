@@ -19,7 +19,7 @@ const Navs = (props: any) => {
             items={[
                 { itemKey: 'Home', text: '首页', icon: <IconHome size="large" /> },
                 { itemKey: 'Data', text: '基础数据', icon: <IconHistogram size="large" /> },
-                { itemKey: 'Project', text: '项目管理', icon: <IconGithubLogo size="large" /> },
+                { itemKey: 'Project', text: '广告管理', icon: <IconGithubLogo size="large" /> },
                 { itemKey: 'Custom', text: '客户管理', icon: <IconUserGroup size="large" /> },
                 { itemKey: 'ShortLink', text: '短链管理', icon: <IconLink size="large" /> },
                 { itemKey: 'Account', text: '账号管理', icon: <IconUser size="large" /> },

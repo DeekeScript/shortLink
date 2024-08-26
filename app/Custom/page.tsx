@@ -10,7 +10,7 @@ import { getList, remove } from './Fetch';
 const Data = () => {
     const columns = [
         {
-            title: '项目标题',
+            title: '广告标题',
             dataIndex: 'project_id',
             width: 150,
             render: (text: any, record: any) => `${record?.short_link?.project?.title}`,

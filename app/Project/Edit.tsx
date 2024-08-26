@@ -47,9 +47,9 @@ const Edit = (props: { refresh: any, values: any }) => {
 
     return (
         <>
-            {values?.id ? <Button onClick={showDialog} type='secondary' icon={<IconEdit />} aria-label='编辑' /> : <Button onClick={showDialog} theme='outline' type="primary" icon={<IconPlus />} aria-label="添加项目">添加项目</Button>}
+            {values?.id ? <Button onClick={showDialog} type='secondary' icon={<IconEdit />} aria-label='编辑' /> : <Button onClick={showDialog} theme='outline' type="primary" icon={<IconPlus />} aria-label="添加广告">添加广告</Button>}
             <Modal
-                title="编辑项目"
+                title="编辑广告"
                 keepDOM={true}
                 visible={visible}
                 onOk={handleOk}
@@ -62,8 +62,8 @@ const Edit = (props: { refresh: any, values: any }) => {
                     labelPosition='left'
                     initValues={values}
                 >
-                    <Form.Input field='title' label='项目名称' />
-                    <Form.Select initValue={values ? ('' + values.status) : "-1"} field="status" label={{ text: '项目状态', optional: false }}>
+                    <Form.Input field='title' label='广告名称' />
+                    <Form.Select initValue={values ? ('' + values.status) : "-1"} field="status" label={{ text: '广告状态', optional: false }}>
                         <Form.Select.Option value="-1">--请选择--</Form.Select.Option>
                         <Form.Select.Option value="0">待上线</Form.Select.Option>
                         <Form.Select.Option value="1">已上线</Form.Select.Option>

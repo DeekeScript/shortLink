@@ -228,7 +228,7 @@ const Home = () => {
         <BasePage>
             <div>
                 <Select value={projectId} onChange={change}>
-                    <Option value={0}>全部项目</Option>
+                    <Option value={0}>全部广告</Option>
                     {projectTitle.map((option: { id: number, title: string }) => (
                         <Option value={option.id} key={option.id}>
                             {option.title}

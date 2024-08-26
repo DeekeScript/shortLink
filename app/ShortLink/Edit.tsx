@@ -79,7 +79,7 @@ const Edit = (props: { refresh: any, values: any }) => {
                     initValues={values}
                 >
                     <Form.Input field='title' initValue={values ? values.title : ''} label={'标题'} />
-                    <Form.Select initValue={values ? values.project_id : '-1'} field='project_id' label={'项目'}>
+                    <Form.Select initValue={values ? values.project_id : '-1'} field='project_id' label={'广告'}>
                         <Form.Select.Option value="-1">--请选择--</Form.Select.Option>
                         {projectList.map((option: { id: number, title: string }) => (
                             <Form.Select.Option value={option.id} key={option.id}>

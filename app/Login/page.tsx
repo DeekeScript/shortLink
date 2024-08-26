@@ -6,7 +6,7 @@ import { login, qrcode } from './Fetch';
 import Image from 'next/image';
 import { FormApi } from '@douyinfe/semi-ui/lib/es/form';
 import { useRouter } from 'next/navigation';
-
+import './style.css';
 
 const Login = () => {
     const [qrcodeData, setQrcodeData] = useState({ img: '', key: '' });
@@ -59,15 +59,15 @@ const Login = () => {
 
     return (
         <div style={{ position: 'relative', height: '100%', overflow: 'hidden' }}>
-            <div style={{ background: "url(/images/bj.jpg) no-repeat", backgroundSize: 'cover', height: '100%', opacity: 0.6 }}></div>
+            {/* <div style={{ background: "url(/images/bj.jpg) no-repeat", backgroundSize: 'cover', height: '100%', opacity: 0.4 }}></div> */}
             <div style={{ position: 'absolute', left: 0, top: 0, width: '100%', backgroundColor: "rgba(243, 243, 243, 0.8)" }}>
                 <div style={{ display: 'flex', justifyContent: 'center', padding: '12px 24px', width: '260px' }}>
                     <div><IconSemiLogo style={{ fontSize: 36 }} /></div>
                     <div style={{ paddingTop: '0px', fontSize: '24px' }}>壹择短链平台</div>
                 </div>
             </div>
-            <div style={{ position: 'absolute', top: 0, right: 0, width: '800px', height: '100%' }}>
-                <div style={{ backgroundColor: '#FFFFFF', width: '400px', height: '360px', margin: 'auto', marginTop: "26%", padding: '24px', border: 'solid 12px #F3F3F3', borderRadius: '12px' }}>
+            <div style={{ position: 'absolute', top: 0, right: 0, width: '100%', height: '100%' }}>
+                <div style={{ backgroundColor: '#FFFFFF', width: '400px', height: '360px', margin: 'auto', marginTop: "13%", padding: '24px', border: 'solid 12px #F3F3F3', borderRadius: '12px' }}>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <div style={{ paddingTop: '0px', fontSize: '20px' }}>账号登录</div>
                     </div>

@@ -38,7 +38,7 @@ const Project = () => {
             onFilter: (value: string, record: any) => record.title.includes(value),
         },
         {
-            title: '项目地址',
+            title: '广告地址',
             width: 300,
             dataIndex: 'url',
             render: (text: any) => `${text}`,

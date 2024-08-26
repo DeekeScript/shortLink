@@ -26,7 +26,7 @@ const ShortLink = () => {
             onFilter: (value: string, record: any) => record.title.includes(value),
         },
         {
-            title: '项目标题',
+            title: '广告标题',
             dataIndex: 'project_title',
             render: (text: any, record: any) => `${record?.project?.title}`,
         },
