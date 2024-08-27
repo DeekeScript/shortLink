@@ -1,6 +1,6 @@
 'use client';
 import { IconClock, IconDelete, IconDuration, IconQrCode, IconCode } from '@douyinfe/semi-icons';
-import { Avatar, Button, Divider, Modal, Popconfirm, Space, Table, Tag, TextArea, Toast } from '@douyinfe/semi-ui';
+import { Avatar, Banner, Button, Divider, Modal, Popconfirm, Space, Table, Tag, TextArea, Toast } from '@douyinfe/semi-ui';
 import * as dateFns from 'date-fns';
 import { useEffect, useState } from 'react';
 import BasePage from '../component/BasePage';
@@ -109,10 +109,24 @@ const ShortLink = () => {
                             <a target='_blank' style={{ textDecoration: 'underline', color: '#0000FF' }} href={record.url + '?type=1'}>{record?.project?.title}</a>
                         </div>
 
+                        const html_show_qiwei = <div>
+                            <img src={record.url} width={0} height={0} />
+                            <a target='_blank' style={{ textDecoration: 'underline', color: '#0000FF' }} href={record.url + '?type=2'}>{record?.project?.title}</a>
+                        </div>
+
                         Modal.success({
                             width: 800,
-                            height: 300,
-                            title: '广告代码', content: <div><TextArea defaultValue={html} /><Divider style={{ margin: '12px 0' }} />{html_show}</div>,
+                            title: '广告代码', content: <div>
+                                <TextArea defaultValue={html} /><Divider style={{ margin: '12px 0' }} />
+                                {html_show}
+                                <Banner
+                                    style={{ margin: '12px 0' }}
+                                    type="info"
+                                    description="默认广告链接会进入对应广告配置的地址，如果想直接进入企业微信二维码界面，请将<a>标签内的type改为2即可，效果如下："
+                                    closeIcon={null}
+                                />
+                                {html_show_qiwei}
+                            </div>,
                         });
                     }} type="secondary" icon={<IconCode />} aria-label="广告代码" />
                 </Space>
