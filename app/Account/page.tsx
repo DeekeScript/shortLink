@@ -40,7 +40,7 @@ const ShortLink = () => {
             title: '状态',
             dataIndex: 'type',
             render: (text: string | number) => {
-                const tagConfig = {
+                const tagConfig: any = {
                     1: { color: 'pink', prefixIcon: <IconDuration />, text: '管理员' },
                     0: { color: 'cyan', prefixIcon: <IconClock />, text: '普通用户' },
                 };

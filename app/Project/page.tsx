@@ -53,7 +53,7 @@ const Project = () => {
             title: '状态',
             dataIndex: 'status',
             render: (text: string | number) => {
-                const tagConfig = {
+                const tagConfig : any = {
                     2: { color: 'green', prefixIcon: <IconTickCircle />, text: '已完成' },
                     1: { color: 'pink', prefixIcon: <IconDuration />, text: '已上线' },
                     0: { color: 'cyan', prefixIcon: <IconClock />, text: '待上线' },

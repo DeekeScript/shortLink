@@ -4,8 +4,10 @@ import { useUser } from '../util/Hook';
 import Footers from './Footers';
 import Headers from './Headers';
 import Navs from "./Navs";
+import { ReactNode } from 'react';
 
-const BasePage = ({ children }) => {
+
+const BasePage: React.FC<{ children: ReactNode }> = ({ children }) => {
     const { Content } = Layout;
     const user = useUser('/Login', false);
 
@@ -17,7 +19,7 @@ const BasePage = ({ children }) => {
                 <Content
                     style={{
                         padding: '12px',
-                       
+
                         backgroundColor: '#f9f9fa'
                     }}
                 >

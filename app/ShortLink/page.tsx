@@ -39,7 +39,7 @@ const ShortLink = () => {
             title: '状态',
             dataIndex: 'status',
             render: (text: string | number) => {
-                const tagConfig = {
+                const tagConfig:any = {
                     1: { color: 'pink', prefixIcon: <IconDuration />, text: '已投放' },
                     0: { color: 'cyan', prefixIcon: <IconClock />, text: '待投放' },
                 };

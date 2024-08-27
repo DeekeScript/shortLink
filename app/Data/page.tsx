@@ -31,7 +31,7 @@ const Data = () => {
             width: 80,
             dataIndex: 'type',
             render: (text: string | number) => {
-                const tagConfig = {
+                const tagConfig: any = {
                     1: { color: 'pink', prefixIcon: <IconLikeHeart />, text: '点击' },
                     0: { color: 'cyan', prefixIcon: <IconEyeOpened />, text: '展示' },
                 };

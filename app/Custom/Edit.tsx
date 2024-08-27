@@ -3,11 +3,12 @@ import { IconPlus, IconEdit } from '@douyinfe/semi-icons';
 import { Button, Form, Modal, Toast } from '@douyinfe/semi-ui';
 import React, { useEffect, useState } from 'react';
 import { add, update } from './Fetch';
+import { FormApi } from '@douyinfe/semi-ui/lib/es/form';
 
 const Edit = (props: { refresh: any, values: any }) => {
     const [visible, setVisible] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [formApi, setFormApi] = useState(null);
+    const [formApi, setFormApi] = useState<FormApi>();
     const [values, setValues] = useState(props.values);
 
     const showDialog = () => {

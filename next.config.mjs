@@ -3,9 +3,10 @@ import semi from '@douyinfe/semi-next';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     transpilePackages: ['@douyinfe/semi-ui', '@douyinfe/semi-icons', '@douyinfe/semi-illustrations'],
+    output: 'export',
+    reactStrictMode: false,
 };
 
-// 获取 semi 配置对象
-const semiConfig = semi.default(nextConfig);
+const semiConfig = semi.default()(nextConfig);
 
 export default semiConfig;

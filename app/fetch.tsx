@@ -9,7 +9,7 @@ export async function get(route: string, params: any) {
         str = '?' + str.substring(1);
     }
 
-    let headers = {
+    let headers: any = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
     };
@@ -18,7 +18,7 @@ export async function get(route: string, params: any) {
         headers['Authorization'] = localStorage.getItem('access_token');
     }
 
-    const res = await fetch(`http://link.local/api/` + route + str, {
+    const res = await fetch(`https://crm.yizetech.com.cn/api/` + route + str, {
         method: 'GET',
         headers: headers,
     });
@@ -35,7 +35,7 @@ export async function get(route: string, params: any) {
 }
 
 export async function post(route: string, params: any) {
-    let headers = {
+    let headers:any = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
     };
@@ -44,7 +44,7 @@ export async function post(route: string, params: any) {
         headers['Authorization'] = localStorage.getItem('access_token');
     }
 
-    const res = await fetch(`http://link.local/api/` + route, {
+    const res = await fetch(`https://crm.yizetech.com.cn/api/` + route, {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({ ...params }), // 将数据转换为JSON字符串)
