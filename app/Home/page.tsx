@@ -80,9 +80,9 @@ const Home = () => {
             setTodayData(setValues(todayData, res.todayData));
 
             for (let i in res.data) {
-                data['show_count'].push({ x: i.substring(5), type: '展示量', y: res.data[i]['show_count'] });
-                data['click_count'].push({ x: i.substring(5), type: '点击量', y: res.data[i]['click_count'] });
-                data['chat_count'].push({ x: i.substring(5), type: '咨询量', y: res.data[i]['chat_count'] });
+                data['show_count'].push({ x: i.substring(5, 10), type: '展示量', y: res.data[i]['show_count'] });
+                data['click_count'].push({ x: i.substring(5, 10), type: '点击量', y: res.data[i]['click_count'] });
+                data['chat_count'].push({ x: i.substring(5, 10), type: '咨询量', y: res.data[i]['chat_count'] });
                 // data['deal_count'].push({ x: i, type: '成交量', y: res.data[i]['deal_count'] });
             }
 

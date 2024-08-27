@@ -1,6 +1,6 @@
 'use client';
-import { IconClock, IconDelete, IconDuration, IconQrCode } from '@douyinfe/semi-icons';
-import { Avatar, Button, Modal, Popconfirm, Space, Table, Tag, Toast } from '@douyinfe/semi-ui';
+import { IconClock, IconDelete, IconDuration, IconQrCode, IconCode } from '@douyinfe/semi-icons';
+import { Avatar, Button, Divider, Modal, Popconfirm, Space, Table, Tag, TextArea, Toast } from '@douyinfe/semi-ui';
 import * as dateFns from 'date-fns';
 import { useEffect, useState } from 'react';
 import BasePage from '../component/BasePage';
@@ -36,10 +36,15 @@ const ShortLink = () => {
             render: (text: any) => <a target='_blank' href={text}>{text}</a>,
         },
         {
+            title: '备注',
+            dataIndex: 'remark',
+            render: (text: any) => <a target='_blank' href={text}>{text}</a>,
+        },
+        {
             title: '状态',
             dataIndex: 'status',
             render: (text: string | number) => {
-                const tagConfig:any = {
+                const tagConfig: any = {
                     1: { color: 'pink', prefixIcon: <IconDuration />, text: '已投放' },
                     0: { color: 'cyan', prefixIcon: <IconClock />, text: '待投放' },
                 };
@@ -78,7 +83,7 @@ const ShortLink = () => {
         },
         {
             title: '操作',
-            width: 150,
+            width: 170,
             dataIndex: 'id',
             render: (value: number, record: any) => {
                 return <Space>
@@ -95,6 +100,21 @@ const ShortLink = () => {
                     <Button onClick={() => {
                         Modal.success({ title: '企微获客二维码', content: <QRCodeCanvas size={200} style={{ margin: 'auto' }} value={record.project.qiwei_link + '?customer_channel=' + value} />, });
                     }} type="secondary" icon={<IconQrCode />} aria-label="企微二维码" />
+
+                    <Button onClick={() => {
+                        const html = "<div>\n    <img src='" + record.url + "?type=0' width=0 height=0 />" +
+                            "\n    <a target='_blank' href='" + record.url + "?type=1'>" + record?.project?.title + "</a>\n</div>";
+                        const html_show = <div>
+                            <img src={record.url} width={0} height={0} />
+                            <a target='_blank' style={{ textDecoration: 'underline', color: '#0000FF' }} href={record.url + '?type=1'}>{record?.project?.title}</a>
+                        </div>
+
+                        Modal.success({
+                            width: 800,
+                            height: 300,
+                            title: '广告代码', content: <div><TextArea defaultValue={html} /><Divider style={{ margin: '12px 0' }} />{html_show}</div>,
+                        });
+                    }} type="secondary" icon={<IconCode />} aria-label="广告代码" />
                 </Space>
             }
         }

@@ -63,7 +63,7 @@ const Login = () => {
             <div style={{ position: 'absolute', left: 0, top: 0, width: '100%', backgroundColor: "rgba(243, 243, 243, 0.8)" }}>
                 <div style={{ display: 'flex', justifyContent: 'center', padding: '12px 24px', width: '260px' }}>
                     <div><IconSemiLogo style={{ fontSize: 36 }} /></div>
-                    <div style={{ paddingTop: '0px', fontSize: '24px' }}>壹择短链平台</div>
+                    <div style={{ paddingTop: '0px', fontSize: '24px' }}>{process.env.NEXT_PUBLIC_TITLE}平台</div>
                 </div>
             </div>
             <div style={{ position: 'absolute', top: 0, right: 0, width: '100%', height: '100%' }}>

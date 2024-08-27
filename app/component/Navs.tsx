@@ -27,7 +27,7 @@ const Navs = (props: any) => {
             ]}
             header={{
                 logo: <IconSemiLogo style={{ fontSize: 36 }} />,
-                text: '壹择短链',
+                text: process.env.NEXT_PUBLIC_TITLE,
                 style: { paddingBottom: '12px' }
             }}
             footer={{

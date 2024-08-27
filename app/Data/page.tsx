@@ -59,15 +59,7 @@ const Data = () => {
             },
         },
         {
-            title: '操作次数',
-            dataIndex: 'today_count',
-            width: 100,
-            render: (text: string, record: any) => {
-                return <div>{text}次</div>
-            }
-        },
-        {
-            title: '首次操作时间',
+            title: '操作时间',
             width: 120,
             dataIndex: 'from_time_at',
             render: (value: any) => {
