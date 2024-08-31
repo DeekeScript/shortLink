@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body style={{width:'100%!important'}}>{children}</body>
+      <body style={{ width: '100%!important' }}>{children}</body>
     </html>
   );
 }

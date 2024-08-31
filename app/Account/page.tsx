@@ -3,37 +3,32 @@ import { IconClock, IconDelete, IconDuration, IconEdit, IconTickCircle } from '@
 import { Avatar, Button, Input, Popconfirm, Space, Table, Tag, Toast } from '@douyinfe/semi-ui';
 import * as dateFns from 'date-fns';
 import { useEffect, useRef, useState } from 'react';
-import BasePage from '../component/BasePage';
+import BasePage from '../Component/BasePage';
 import Edit from './Edit';
 import { getList, remove } from './Fetch';
+import Search from '../Component/Search';
 
 const ShortLink = () => {
-    const [title, setTitle] = useState('');
-    const handleChange = (v: any) => {
-        setTitle(v);
-    };
-
-    const onKeyDown = (v: any) => {
-        if (v.code === "Enter") {
-            handlePageChange(currentPage);
-        }
-    }
+    const [values, setValues] = useState<any>({});
 
     const columns = [
         {
             title: '姓名',
             dataIndex: 'name',
+            search: true,
             render: (text: any, record: any) => `${text}`,
             onFilter: (value: string, record: any) => record.name.includes(value),
         },
         {
             title: '邮箱',
             dataIndex: 'email',
+            search: true,
             render: (text: any) => `${text}`,
         },
         {
             title: '手机号',
             dataIndex: 'mobile',
+            search: true,
             render: (text: any) => `${text}`,
         },
         {
@@ -49,8 +44,14 @@ const ShortLink = () => {
             }
         },
         {
+            title: '备注',
+            dataIndex: 'remark',
+            search: true,
+            render: (text: any) => `${text}`,
+        },
+        {
             title: '所有者',
-            dataIndex: 'name',
+            dataIndex: 'user_name',
             render: (text: any, record: any, index: number) => {
                 return (
                     <Space>
@@ -71,6 +72,8 @@ const ShortLink = () => {
         },
         {
             title: '创建日期',
+            search: true,
+            type: 'dateRange',
             dataIndex: 'created_at',
             sorter: (a: any, b: any) => (a.updateTime - b.updateTime > 0 ? 1 : -1),
             render: (value: any) => {
@@ -108,17 +111,18 @@ const ShortLink = () => {
     const [currentPage, setPage] = useState(1);
     const [total, setTotal] = useState(0);
 
-    const fetchData = async (currentPage = 1) => {
+    const fetchData = async (values: any) => {
         setLoading(true);
-        setPage(currentPage);
-        setLoading(false);
-        let res = await getData({ page: currentPage, title: title });
+        setPage(values.page || 1);
+        let res = await getData(values);
         setTotal(res.total);
         setData(res.data);
+        setLoading(false);
     };
 
     const handlePageChange = (page: number) => {
-        fetchData(page);
+        values.page = page;
+        fetchData(values);
     };
 
     const removes = async (id: number) => {
@@ -132,11 +136,17 @@ const ShortLink = () => {
     };
 
     useEffect(() => {
-        fetchData();
+        fetchData({});
     }, []);
 
     return (
         <BasePage>
+            <Search fields={columns} onSubmit={(values: any) => {
+                values.page = 1;
+                console.log(values);
+                fetchData(values);
+            }} />
+
             <div style={{ textAlign: 'right', paddingBottom: '12px' }}>
                 <Edit values={undefined} refresh={() => handlePageChange(currentPage)} />
             </div>

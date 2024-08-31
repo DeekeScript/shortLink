@@ -1,6 +1,6 @@
 'use client';
 import { Divider, Form, Toast } from '@douyinfe/semi-ui';
-import BasePage from "../component/BasePage";
+import BasePage from "../Component/BasePage";
 import { useEffect, useState } from 'react';
 import { list, update } from './Fetch';
 import Button from '@douyinfe/semi-ui/lib/es/button/Button';
@@ -32,11 +32,6 @@ const Home = () => {
             {data ? <Form onSubmit={submit} labelPosition='left' initValues={data}>
                 <Form.Input field="corpid" label="corpid" />
                 <Form.Input field="secret" label="secret" />
-                <Form.TagInput
-                    field='qiwei_user_list'
-                    label="企微用户ID"
-                    placeholder='输入后，按Enter键'
-                />
                 <Button type="primary" htmlType="submit">保存</Button>
             </Form> : null}
         </BasePage>

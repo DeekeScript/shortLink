@@ -22,14 +22,16 @@ export async function get(route: string, params: any) {
         method: 'GET',
         headers: headers,
     });
-    const data = await res.json();
+
+    const data = res.json();
     if (res.status === 429) {
         Notification.open({ title: '系统通知', content: '频率限制，请稍后再试' });
         return data;
     }
 
     if (res.status === 401) {
-        Notification.open({ title: '系统通知', content: '登录失效' });
+        //Notification.open({ title: '系统通知', content: '登录失效' });
+        window.location.href = '/Login';
         return data;
     }
 
@@ -40,7 +42,7 @@ export async function get(route: string, params: any) {
 }
 
 export async function post(route: string, params: any) {
-    let headers:any = {
+    let headers: any = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
     };
@@ -61,7 +63,8 @@ export async function post(route: string, params: any) {
     }
 
     if (res.status === 401) {
-        Notification.open({ title: '系统通知', content: '登录失效' });
+        //Notification.open({ title: '系统通知', content: '登录失效' });
+        window.location.href = '/Login';
         return data;
     }
 

@@ -2,6 +2,7 @@ import { IconHistogram, IconHome, IconLink, IconSemiLogo, IconSetting, IconUser,
 import { Layout, Nav } from '@douyinfe/semi-ui';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
+import IconLogo from '../../public/logo.svg';
 
 
 const Navs = (props: any) => {
@@ -26,7 +27,7 @@ const Navs = (props: any) => {
                 { itemKey: 'Setting', text: '系统设置', icon: <IconSetting size="large" /> },
             ]}
             header={{
-                logo: <IconSemiLogo style={{ fontSize: 36 }} />,
+                logo: <IconLogo style={{ fontSize: 36 }} />,
                 text: process.env.NEXT_PUBLIC_TITLE,
                 style: { paddingBottom: '12px' }
             }}

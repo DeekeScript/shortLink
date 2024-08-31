@@ -15,3 +15,11 @@ export async function update(params: any) {
 export async function remove(params: any) {
     return await post('project/remove', params);
 }
+
+export async function departmentList(params: any) {
+    return await get('qiwei/departmentList', params);
+}
+
+export async function departmentUserList(params: any) {
+    return await get('qiwei/departmentUserList', params);
+}

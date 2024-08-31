@@ -1,39 +1,21 @@
 'use client';
 import { IconClock, IconDelete, IconDuration, IconEdit, IconTickCircle } from '@douyinfe/semi-icons';
-import { Avatar, Button, Input, Popconfirm, Space, Table, Tag, Toast } from '@douyinfe/semi-ui';
+import { Avatar, Button, Input, Popconfirm, Space, Table, Tag, Toast, Typography } from '@douyinfe/semi-ui';
 import * as dateFns from 'date-fns';
 import { useEffect, useRef, useState } from 'react';
-import BasePage from '../component/BasePage';
+import BasePage from '../Component/BasePage';
 import Edit from './Edit';
 import { getList, remove } from './Fetch';
+import Search from '../Component/Search';
 
 const Project = () => {
-    const [title, setTitle] = useState('');
-    const handleChange = (v: any) => {
-        setTitle(v);
-    };
-
-    const onKeyDown = (v: any) => {
-        if (v.code === "Enter") {
-            handlePageChange(currentPage);
-        }
-    }
+    const [values, setValues] = useState<any>({});
 
     const columns = [
         {
-            title: (
-                <Space>
-                    <span>标题</span>
-                    <Input
-                        placeholder="请输入标题"
-                        style={{ width: 200 }}
-                        onChange={handleChange}
-                        onKeyDown={onKeyDown}
-                        showClear
-                    />
-                </Space>
-            ),
+            title: '标题',
             dataIndex: 'title',
+            search: true,
             render: (text: any) => `${text}`,
             onFilter: (value: string, record: any) => record.title.includes(value),
         },
@@ -41,19 +23,35 @@ const Project = () => {
             title: '广告地址',
             width: 300,
             dataIndex: 'url',
+            search: true,
             render: (text: any) => `${text}`,
         },
         {
             title: '企微获客链接',
             width: 300,
+            search: true,
             dataIndex: 'qiwei_link',
             render: (text: any) => `${text}`
         },
         {
+            title: '企微对接人',
+            width: 120,
+            dataIndex: 'qiwei_userid',
+            ellipsis: true,
+            render: (text: any) => <Typography.Text ellipsis={{ showTooltip: true }}>{text}</Typography.Text>,
+        },
+        {
             title: '状态',
             dataIndex: 'status',
+            search: true,
+            type: 'select',
+            options: [
+                { label: '待上线', value: 0 },
+                { label: '已上线', value: 1 },
+                { label: '已完成', value: 2 },
+            ],
             render: (text: string | number) => {
-                const tagConfig : any = {
+                const tagConfig: any = {
                     2: { color: 'green', prefixIcon: <IconTickCircle />, text: '已完成' },
                     1: { color: 'pink', prefixIcon: <IconDuration />, text: '已上线' },
                     0: { color: 'cyan', prefixIcon: <IconClock />, text: '待上线' },
@@ -86,6 +84,8 @@ const Project = () => {
         {
             title: '创建日期',
             dataIndex: 'created_at',
+            type: 'dateRange',
+            search: true,
             sorter: (a: any, b: any) => (a.updateTime - b.updateTime > 0 ? 1 : -1),
             render: (value: any) => {
                 return dateFns.format(new Date(value), 'yyyy-MM-dd');
@@ -122,17 +122,19 @@ const Project = () => {
     const [currentPage, setPage] = useState(1);
     const [total, setTotal] = useState(0);
 
-    const fetchData = async (currentPage = 1) => {
+    const fetchData = async (params: any) => {
         setLoading(true);
-        setPage(currentPage);
-        setLoading(false);
-        let res = await getData({ page: currentPage, title: title });
+        setPage(params.page || 1);
+        setValues(values);
+        let res = await getData(params);
         setTotal(res.total);
         setData(res.data);
+        setLoading(false);
     };
 
     const handlePageChange = (page: number) => {
-        fetchData(page);
+        values.page = page;
+        fetchData(values);
     };
 
     const removes = async (id: number) => {
@@ -146,11 +148,16 @@ const Project = () => {
     };
 
     useEffect(() => {
-        fetchData();
+        fetchData({ page: 1 });
     }, []);
 
     return (
         <BasePage>
+            <Search fields={columns} onSubmit={(values: any) => {
+                values.page = 1;
+                console.log(values);
+                fetchData(values);
+            }} />
             <div style={{ textAlign: 'right', paddingBottom: '12px' }}>
                 <Edit values={undefined} refresh={() => handlePageChange(currentPage)} />
             </div>

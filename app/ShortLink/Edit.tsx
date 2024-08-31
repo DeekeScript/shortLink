@@ -70,7 +70,7 @@ const Edit = (props: { refresh: any, values: any }) => {
                 keepDOM={true}
                 visible={visible}
                 onOk={handleOk}
-                okButtonProps={{ loading: loading }}
+                confirmLoading={loading}
                 style={{ width: 600 }}
                 onCancel={handleCancel}
             >

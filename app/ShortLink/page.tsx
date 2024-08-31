@@ -1,42 +1,39 @@
 'use client';
-import { IconClock, IconDelete, IconDuration, IconQrCode, IconCode } from '@douyinfe/semi-icons';
-import { Avatar, Banner, Button, Divider, Modal, Popconfirm, Space, Table, Tag, TextArea, Toast } from '@douyinfe/semi-ui';
+import { IconClock, IconCode, IconDelete, IconDuration, IconQrCode } from '@douyinfe/semi-icons';
+import { Avatar, Banner, Button, CodeHighlight, Divider, Modal, Popconfirm, Space, Table, Tag, TextArea, Toast } from '@douyinfe/semi-ui';
 import * as dateFns from 'date-fns';
 import { useEffect, useState } from 'react';
-import BasePage from '../component/BasePage';
+import BasePage from '../Component/BasePage';
+import Search from '../Component/Search';
 import Edit from './Edit';
 import { getList, remove } from './Fetch';
-import { QRCodeCanvas } from 'qrcode.react';
 
 const ShortLink = () => {
-    const [title, setTitle] = useState('');
-    const [qiweiQrcodeVisible, setQiweiQrcodeVisible] = useState({});
-
-    const onKeyDown = (v: any) => {
-        if (v.code === "Enter") {
-            handlePageChange(currentPage);
-        }
-    }
+    const [values, setValues] = useState<any>({});
 
     const columns = [
         {
             title: '标题',
             dataIndex: 'title',
+            search: true,
             render: (text: any, record: any) => `${record.title}`,
             onFilter: (value: string, record: any) => record.title.includes(value),
         },
         {
             title: '广告标题',
             dataIndex: 'project_title',
+            search: true,
             render: (text: any, record: any) => `${record?.project?.title}`,
         },
         {
             title: '短链',
             dataIndex: 'url',
+            search: true,
             render: (text: any) => <a target='_blank' href={text}>{text}</a>,
         },
         {
             title: '备注',
+            search: true,
             dataIndex: 'remark',
             render: (text: any) => <a target='_blank' href={text}>{text}</a>,
         },
@@ -76,6 +73,8 @@ const ShortLink = () => {
         {
             title: '创建日期',
             dataIndex: 'created_at',
+            search: true,
+            type: 'dateRange',
             sorter: (a: any, b: any) => (a.updateTime - b.updateTime > 0 ? 1 : -1),
             render: (value: any) => {
                 return dateFns.format(new Date(value), 'yyyy-MM-dd');
@@ -98,7 +97,12 @@ const ShortLink = () => {
                         </div>
                     </Popconfirm>
                     <Button onClick={() => {
-                        Modal.success({ title: '企微获客二维码', content: <QRCodeCanvas size={200} style={{ margin: 'auto' }} value={record.project.qiwei_link + '?customer_channel=' + value} />, });
+                        Modal.success({
+                            title: '企微获客二维码',
+                            content: <div style={{ paddingTop: '12px' }}><img src={record.qiwei_qrcode} width={200} /></div>,
+                            width: 240,
+                            cancelButtonProps: { "hidden": true }
+                        });
                     }} type="secondary" icon={<IconQrCode />} aria-label="企微二维码" />
 
                     <Button onClick={() => {
@@ -144,17 +148,18 @@ const ShortLink = () => {
     const [currentPage, setPage] = useState(1);
     const [total, setTotal] = useState(0);
 
-    const fetchData = async (currentPage = 1) => {
+    const fetchData = async (values: any) => {
         setLoading(true);
-        setPage(currentPage);
-        setLoading(false);
-        let res = await getData({ page: currentPage, title: title });
+        setPage(values.page || 1);
+        let res = await getData(values);
         setTotal(res.total);
         setData(res.data);
+        setLoading(false);
     };
 
     const handlePageChange = (page: number) => {
-        fetchData(page);
+        values.page = page;
+        fetchData(values);
     };
 
     const removes = async (id: number) => {
@@ -168,11 +173,16 @@ const ShortLink = () => {
     };
 
     useEffect(() => {
-        fetchData();
+        fetchData({});
     }, []);
 
     return (
         <BasePage>
+            <Search fields={columns} onSubmit={(values: any) => {
+                values.page = 1;
+                fetchData(values);
+            }} />
+
             <div style={{ textAlign: 'right', paddingBottom: '12px' }}>
                 <Edit values={undefined} refresh={() => handlePageChange(currentPage)} />
             </div>

@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
-import BasePage from "../component/BasePage";
+import BasePage from "../Component/BasePage";
 import { ISpec, default as VChart } from '@visactor/vchart';
 import { Card, Descriptions, Select, Space, Tag } from "@douyinfe/semi-ui";
 import Option from "@douyinfe/semi-ui/lib/es/select/option";

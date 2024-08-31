@@ -11,6 +11,8 @@ import './style.css';
 const Login = () => {
     const [qrcodeData, setQrcodeData] = useState({ img: '', key: '' });
     const [formApi, setFormApi] = useState<FormApi>();
+    const [loading, setLoading] = useState(false);
+
     const router = useRouter();
     const fetchData = async () => {
         let res = await qrcode({});
@@ -43,6 +45,7 @@ const Login = () => {
             return Toast.error(`请先同意协议`);
         }
 
+        setLoading(true);
         let res = await login({ ...formApi?.getValues(), 'key': qrcodeData.key });
         console.log(res);
         if (res.code === 0) {
@@ -51,6 +54,7 @@ const Login = () => {
         } else {
             Toast.error(res.msg);
         }
+        setLoading(false);
     }
 
     useEffect(() => {
@@ -100,11 +104,11 @@ const Login = () => {
                                 trigger='blur'
                                 style={{ width: 212 }}
                             />
-                            {qrcodeData.img ? <Image onClick={async () => await fetchData()} alt='验证码' width={88} height={42} style={{ marginLeft: '12px', height: '42px', width: '88px', paddingTop: '12px' }} src={qrcodeData.img} /> : null}
+                            {qrcodeData.img ? <Image title='点击更换' onClick={async () => await fetchData()} alt='验证码' width={88} height={42} style={{ marginLeft: '12px', height: '42px', width: '88px', paddingTop: '12px' }} src={qrcodeData.img} /> : null}
                         </div>
 
 
-                        <Button theme='outline' onClick={submit} style={{ width: 312 }} type="primary">登录</Button>
+                        <Button theme='outline' loading={loading} onClick={submit} style={{ width: 312 }} type="primary">登录</Button>
                         <Form.Checkbox field='agree' style={{ fontSize: '12px', color: '#EEEEEE' }} noLabel>同意我们的《用户协议》和《隐私政策》</Form.Checkbox>
                     </Form>
                 </div>

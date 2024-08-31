@@ -1,5 +1,5 @@
-import { IconBytedanceLogo } from '@douyinfe/semi-icons';
 import { Layout } from '@douyinfe/semi-ui';
+import IconLogo from '../../public/logo.svg';
 
 const Footers = () => {
     const { Footer } = Layout;
@@ -19,7 +19,7 @@ const Footers = () => {
                     alignItems: 'center',
                 }}
             >
-                <IconBytedanceLogo size="large" style={{ marginRight: '8px' }} />
+                <IconLogo size="large" style={{ marginRight: '8px' }} />
                 <span>Copyright © 2024 壹择科技. All Rights Reserved. </span>
             </span>
         </Footer>
