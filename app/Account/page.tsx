@@ -32,7 +32,7 @@ const ShortLink = () => {
             render: (text: any) => `${text}`,
         },
         {
-            title: '状态',
+            title: '类型',
             dataIndex: 'type',
             render: (text: string | number) => {
                 const tagConfig: any = {
