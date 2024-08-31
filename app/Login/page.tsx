@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { FormApi } from '@douyinfe/semi-ui/lib/es/form';
 import { useRouter } from 'next/navigation';
 import './style.css';
+import IconLogo from '../../public/logo.svg';
 
 const Login = () => {
     const [qrcodeData, setQrcodeData] = useState({ img: '', key: '' });
@@ -66,7 +67,7 @@ const Login = () => {
             {/* <div style={{ background: "url(/images/bj.jpg) no-repeat", backgroundSize: 'cover', height: '100%', opacity: 0.4 }}></div> */}
             <div style={{ position: 'absolute', left: 0, top: 0, width: '100%', backgroundColor: "rgba(243, 243, 243, 0.8)" }}>
                 <div style={{ display: 'flex', justifyContent: 'center', padding: '12px 24px', width: '260px' }}>
-                    <div><IconSemiLogo style={{ fontSize: 36 }} /></div>
+                    <div><IconLogo style={{ fontSize: 36 }} /></div>
                     <div style={{ paddingTop: '0px', fontSize: '24px' }}>{process.env.NEXT_PUBLIC_TITLE}平台</div>
                 </div>
             </div>
