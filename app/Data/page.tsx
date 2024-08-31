@@ -30,6 +30,13 @@ const Data = () => {
             render: (text: any) => <a target='_blank' href={text}>{text}</a>,
         },
         {
+            title: '来源IP',
+            width: 120,
+            dataIndex: 'from_ip',
+            search: true,
+            render: (text: any) => <a target='_blank' href={text}>{text}</a>,
+        },
+        {
             title: '类型',
             width: 80,
             dataIndex: 'type',
