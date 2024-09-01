@@ -1,6 +1,6 @@
 'use client';
-import { IconDelete } from '@douyinfe/semi-icons';
-import { Avatar, Button, Popconfirm, Space, Table, Toast, Typography } from '@douyinfe/semi-ui';
+import { IconDelete, IconDuration, IconClock } from '@douyinfe/semi-icons';
+import { Avatar, Button, Popconfirm, Space, Table, Tag, Toast, Typography } from '@douyinfe/semi-ui';
 import * as dateFns from 'date-fns';
 import { useEffect, useState } from 'react';
 import BasePage from '../Component/BasePage';
@@ -39,6 +39,24 @@ const Data = () => {
                     <Avatar src={text} size="small" color={'red'} style={{ marginRight: 4 }} />
                 );
             },
+        },
+        {
+            title: '状态',
+            dataIndex: 'status',
+            search: false,
+            type: 'select',
+            options: [
+                { label: '咨询中', value: 0 },
+                { label: '已成交', value: 1 },
+            ],
+            render: (text: string | number) => {
+                const tagConfig: any = {
+                    1: { color: 'pink', prefixIcon: <IconDuration />, text: '已成交' },
+                    0: { color: 'cyan', prefixIcon: <IconClock />, text: '咨询中' },
+                };
+                const tagProps = tagConfig[text] || {};
+                return <Tag shape='circle' {...tagProps} style={{ userSelect: 'text' }}>{tagProps.text}</Tag>
+            }
         },
         {
             title: '所有者',
