@@ -70,4 +70,4 @@ bun dev
 
 ## 微信扫码联系我们
 
-<img src="./images/image.png" width="200" />
+<img src="/images/image.png" width="200" />
