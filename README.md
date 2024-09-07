@@ -4,7 +4,7 @@
 
 ##### 如下，你可以点击下面的链接，加我们的企微，然后我们知道你是通过当前页面进入的：
 
-<a style="font-size:24px" href="">点击这里，联系我们，获取源码【售价：1980元】</a>
+<a style="font-size:24px" href="#bottom">点击这里，联系我们，获取源码【售价：1980元】</a>
 
 ## 广告后台页面展示
 
@@ -48,7 +48,6 @@
 ## 技术栈
 这是一个基于 [Next.js](https://nextjs.org/) 的广告，使用 [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) 创建；本仓库只包含前端代码，后端代码采用PHP框架laravel开发；
 
-<a style="font-size:20px" href="">点击这里，联系我们，获取源码</a>
 
 ## 开始
 
@@ -65,3 +64,10 @@ bun dev
 ```
 
 打开 [http://localhost:3000](http://localhost:3000) 就可以看到界面了
+
+
+<a id="bottom" font-size="36px"></a>
+
+## 微信扫码联系我们
+
+<img src="./images/image.png" width="200" />
