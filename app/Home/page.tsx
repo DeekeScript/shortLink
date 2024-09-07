@@ -14,7 +14,7 @@ const Home = () => {
     const [shortLinkTitle, setShortLinkTitle] = useState([]);
     const [vchartInstance, setVchartInstance] = useState<VChart>();
 
-    const [todayData, setTodayData] = useState([
+    const [monthData, setMonthData] = useState([
         { key: '30日展示量', value: 0 },
         { key: '30日点击量', value: 0 },
         { key: '30日咨询量', value: 0 },
@@ -30,7 +30,7 @@ const Home = () => {
         // { key: '7日成交金额', value: '0.00元' },
     ]);
 
-    const [monthData, setMonthData] = useState([
+    const [todayData, setTodayData] = useState([
         { key: '今日展示量', value: 0 },
         { key: '今日点击量', value: 0 },
         { key: '今日咨询量', value: 0 },
